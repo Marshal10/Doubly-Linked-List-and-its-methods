@@ -53,12 +53,37 @@ class DoublyLinkedList:
         while current:
             print(current.value)
             current=current.prev
+            
+    def search(self,target):
+        current=self.head
+        index=0
+        while current:
+            if current.value==target:
+                return index
+            current=current.next
+            index+=1
+        return -1
+    
+    def get(self,index):
+        if self.head is None or index < 0 or index >= self.length:
+            return None
+        if index <= self.length//2:
+            current=self.head
+            for _ in range(index):
+                current=current.next
+        else:
+            current=self.tail
+            for _ in range(self.length-1,index,-1):
+                current=current.prev
+        return current
         
 doubly_linked_list=DoublyLinkedList()
 doubly_linked_list.append(10)
 doubly_linked_list.append(20)
-print(doubly_linked_list)
+# print(doubly_linked_list)
 doubly_linked_list.prepend(5)
+doubly_linked_list.prepend(15)
+# doubly_linked_list.traverse()
+# doubly_linked_list.reverseTraverse()
 print(doubly_linked_list)
-doubly_linked_list.traverse()
-doubly_linked_list.reverseTraverse()
+# print(doubly_linked_list.get(2))
