@@ -143,6 +143,10 @@ class DoublyLinkedList:
         popped_node.next=popped_node.prev=None
         self.length-=1
         return popped_node
+    
+    def delete_all(self):
+        self.head=self.tail=None
+        self.length=0
         
 doubly_linked_list=DoublyLinkedList()
 doubly_linked_list.append(10)
@@ -155,5 +159,6 @@ doubly_linked_list.prepend(15)
 print(doubly_linked_list)
 # doubly_linked_list.insert(0,40)
 # print(doubly_linked_list)
-print(doubly_linked_list.remove(2))
+# print(doubly_linked_list.remove(2))
+doubly_linked_list.delete_all()
 print(doubly_linked_list)
