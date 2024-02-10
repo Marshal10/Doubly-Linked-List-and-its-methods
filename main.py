@@ -102,6 +102,48 @@ class DoublyLinkedList:
         temp_node.next=new_node
         self.length+=1
         
+    def pop_first(self):
+        if self.head is None:
+            return None
+        popped_node=self.head
+        if self.length==1:
+            self.head=None
+            self.tail=None
+        else:
+            self.head=self.head.next
+            popped_node.next=None
+            self.head.prev=None
+        self.length-=1
+        return popped_node
+    
+    def pop(self):
+        if self.head is None:
+            return None
+        popped_node=self.tail
+        if self.length==1:
+            self.head=None
+            self.tail=None
+        else:
+            self.tail=self.tail.prev
+            popped_node.prev=None
+            self.tail.next=None
+        self.length-=1
+        return popped_node
+    
+    def remove(self,index):
+        if self.head is None or index <0 or index >=self.length:
+            return None
+        if index==0:
+            return self.pop_first()
+        if index==self.length-1:
+            return self.pop()
+        popped_node=self.get(index)
+        popped_node.prev.next=popped_node.next
+        popped_node.next.prev=popped_node.prev
+        popped_node.next=popped_node.prev=None
+        self.length-=1
+        return popped_node
+        
 doubly_linked_list=DoublyLinkedList()
 doubly_linked_list.append(10)
 doubly_linked_list.append(20)
@@ -111,5 +153,7 @@ doubly_linked_list.prepend(15)
 # doubly_linked_list.traverse()
 # doubly_linked_list.reverseTraverse()
 print(doubly_linked_list)
-doubly_linked_list.insert(0,40)
+# doubly_linked_list.insert(0,40)
+# print(doubly_linked_list)
+print(doubly_linked_list.remove(2))
 print(doubly_linked_list)
