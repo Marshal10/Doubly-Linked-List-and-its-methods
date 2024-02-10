@@ -42,9 +42,23 @@ class DoublyLinkedList:
             self.head=new_node
         self.length+=1
         
+    def traverse(self):
+        current=self.head
+        while current:
+            print(current.value)
+            current=current.next
+            
+    def reverseTraverse(self):
+        current=self.tail
+        while current:
+            print(current.value)
+            current=current.prev
+        
 doubly_linked_list=DoublyLinkedList()
 doubly_linked_list.append(10)
 doubly_linked_list.append(20)
 print(doubly_linked_list)
 doubly_linked_list.prepend(5)
 print(doubly_linked_list)
+doubly_linked_list.traverse()
+doubly_linked_list.reverseTraverse()
