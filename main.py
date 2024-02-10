@@ -76,6 +76,31 @@ class DoublyLinkedList:
             for _ in range(self.length-1,index,-1):
                 current=current.prev
         return current
+    
+    def set_value(self,index,value):
+        update_node=self.get(index)
+        if update_node:
+            update_node.value=value
+            return True
+        return False
+    
+    def insert(self,index,value):
+        new_node=Node(value)
+        if index < 0 or index > self.length:
+            print("Index out of bounds")
+            return
+        if index==0:
+            self.prepend(value)
+            return
+        elif index==self.length:
+            self.append(value)
+            return
+        temp_node=self.get(index-1)
+        new_node.next=temp_node.next
+        new_node.prev=temp_node
+        temp_node.next.prev=new_node
+        temp_node.next=new_node
+        self.length+=1
         
 doubly_linked_list=DoublyLinkedList()
 doubly_linked_list.append(10)
@@ -86,4 +111,5 @@ doubly_linked_list.prepend(15)
 # doubly_linked_list.traverse()
 # doubly_linked_list.reverseTraverse()
 print(doubly_linked_list)
-# print(doubly_linked_list.get(2))
+doubly_linked_list.insert(0,40)
+print(doubly_linked_list)
